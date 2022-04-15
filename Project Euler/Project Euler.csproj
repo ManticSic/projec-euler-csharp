@@ -8,6 +8,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <PropertyGroup>
+      <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+      <WarningsAsErrors />
+      <NoWarn />
+    </PropertyGroup>
+
     <ItemGroup>
       <PackageReference Include="CSharpGuidelinesAnalyzer" Version="3.8.0">
         <PrivateAssets>all</PrivateAssets>
