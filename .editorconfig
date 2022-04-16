@@ -15,3 +15,8 @@ indent_size = 2
 [*.{markdn,markdown,md,mdown,mdtext,mdtxt,mdwn,mkd,mkdn,text}]
 trim_trailing_whitespace = false
 
+[*.cs]
+dotnet_diagnostic.av1500.max_statement_count = 12
+dotnet_diagnostic.av1561.max_parameter_count = 5
+dotnet_diagnostic.av1561.max_constructor_parameter_count = 8
+
