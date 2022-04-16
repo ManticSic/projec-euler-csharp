@@ -2,7 +2,7 @@
 
 public static class Numbers
 {
-    public static bool IsMultipleOf(int value, int multiple)
+    public static bool IsMultipleOf(int multiple, int value)
     {
         return value % multiple == 0;
     }
