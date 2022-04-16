@@ -20,12 +20,17 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="NLog" Version="4.7.15" />
+      <PackageReference Include="UnityContainerAttributeRegistration" Version="0.3.0" />
     </ItemGroup>
 
     <ItemGroup>
       <None Update="nlog.config">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Automation\CLI" />
     </ItemGroup>
 
 </Project>
