@@ -64,12 +64,7 @@ public class Primes
     {
         string foobar    = File.ReadAllText("./Assets/primes.json");
 
-        Dictionary<string, long>? allPrimes = JsonSerializer.Deserialize<Dictionary<string, long>>(foobar);
-
-        if (allPrimes is null)
-        {
-            throw new InvalidOperationException("Something went wrong while loading primes.");
-        }
+        Dictionary<string, long> allPrimes = JsonSerializer.Deserialize<Dictionary<string, long>>(foobar) ?? throw new InvalidOperationException();
 
         return allPrimes;
     }

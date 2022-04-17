@@ -11,9 +11,4 @@ public static class Numbers
     {
         return value % 2 == 0;
     }
-
-    public static bool IsOdd(int value)
-    {
-        return !IsEven(value);
-    }
 }

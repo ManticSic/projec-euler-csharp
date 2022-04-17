@@ -24,32 +24,20 @@ public abstract class AbstractProblemTest<TSut>
 
     private void PrintResult(object? result, TimeSpan timeNeeded)
     {
-        if (result == null)
-        {
-            PrintResultAsString("--- ERROR ---", timeNeeded);
-            return;
-        }
+        Type? resultType = result?.GetType();
 
-        Type resultType = result.GetType();
-
-        if (resultType.IsArray)
+        if (resultType is { IsArray: true })
         {
-            PrintArrayResult(result as IEnumerable, timeNeeded);
+            PrintArrayResult(result as IEnumerable ?? throw new InvalidOperationException(), timeNeeded);
         }
         else
         {
-            PrintResultAsString(result.ToString(), timeNeeded);
+            PrintResultAsString(result?.ToString(), timeNeeded);
         }
     }
 
-    private void PrintArrayResult(IEnumerable? result, TimeSpan timeNeeded)
+    private void PrintArrayResult(IEnumerable result, TimeSpan timeNeeded)
     {
-        if (result == null)
-        {
-            PrintResultAsString("--- ERROR ---", timeNeeded);
-            return;
-        }
-
         PrintResultAsString(String.Join(",", result.Cast<object>().ToArray()), timeNeeded);
     }
 
