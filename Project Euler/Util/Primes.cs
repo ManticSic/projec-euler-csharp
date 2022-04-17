@@ -1,9 +1,10 @@
 ﻿using System.Text.Json;
+using Unity.Lifetime;
 using UnityContainerAttributeRegistration.Attribute;
 
 namespace Project_Euler.Util;
 
-[RegisterType]
+[RegisterType(lifetimeManager: typeof(SingletonLifetimeManager))]
 public class Primes
 {
     private readonly Lazy<IDictionary<string, long>> primesAsDictionaryLazy;
