@@ -6,9 +6,16 @@ namespace Project_Euler.Problem0002;
 [RegisterType]
 public class Problem0002
 {
+    private readonly Numbers numbers;
+
+    public Problem0002(Numbers numbers)
+    {
+        this.numbers = numbers;
+    }
+
     public int Solve(int border)
     {
-        return GetFibonacci(border).Where(Numbers.IsEven)
+        return GetFibonacci(border).Where(numbers.IsEven)
                             .Sum();
     }
 

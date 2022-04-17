@@ -1,13 +1,17 @@
-﻿namespace Project_Euler.Util;
+﻿using Unity.Lifetime;
+using UnityContainerAttributeRegistration.Attribute;
 
-public static class Numbers
+namespace Project_Euler.Util;
+
+[RegisterType(lifetimeManager: typeof(SingletonLifetimeManager))]
+public class Numbers
 {
-    public static bool IsMultipleOf(int multiple, int value)
+    public bool IsMultipleOf(int multiple, int value)
     {
         return value % multiple == 0;
     }
 
-    public static bool IsEven(int value)
+    public bool IsEven(int value)
     {
         return value % 2 == 0;
     }
