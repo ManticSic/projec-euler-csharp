@@ -16,12 +16,12 @@ public class Problem0002
     public int Solve(int border)
     {
         return GetFibonacci(border).Where(numbers.IsEven)
-                            .Sum();
+                                   .Sum();
     }
 
     private IList<int> GetFibonacci(int border)
     {
-        List<int> fibonacci = new() {1, 1};
+        List<int> fibonacci = new() { 1, 1 };
 
         while (true)
         {

@@ -15,8 +15,8 @@ public abstract class AbstractProblemTest<TSut>
     protected void Solve<TResult>(Func<TResult> action)
     {
         GC.Collect();
-        Stopwatch sw = Stopwatch.StartNew();
-        TResult result = action.Invoke();
+        Stopwatch sw     = Stopwatch.StartNew();
+        TResult   result = action.Invoke();
         sw.Stop();
 
         PrintResult(result, sw.Elapsed);

@@ -9,8 +9,8 @@
 
     <PropertyGroup>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <WarningsAsErrors />
-        <NoWarn />
+        <WarningsAsErrors/>
+        <NoWarn/>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,8 +18,8 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="NLog" Version="4.7.15" />
-        <PackageReference Include="UnityContainerAttributeRegistration" Version="0.3.0" />
+        <PackageReference Include="NLog" Version="4.7.15"/>
+        <PackageReference Include="UnityContainerAttributeRegistration" Version="0.3.0"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -27,7 +27,7 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Assets\primes.json">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 

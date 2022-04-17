@@ -28,8 +28,8 @@ public class Primes
         int primeStartingIndex = 0;
 
         return FactorizationInternal(value, primeStartingIndex)
-            .ToList()
-            .AsReadOnly();
+               .ToList()
+               .AsReadOnly();
     }
 
     private IEnumerable<long> FactorizationInternal(long value, int primeStartingIndex)
@@ -52,7 +52,7 @@ public class Primes
 
     private int FindLowestPrimeFactorIndex(long value, int startingIndex)
     {
-        for (int primeIndex = startingIndex; ; primeIndex++)
+        for (int primeIndex = startingIndex;; primeIndex++)
         {
             if (value % Values[primeIndex] == 0)
             {
@@ -63,9 +63,10 @@ public class Primes
 
     private IDictionary<string, long> LoadFromAssets()
     {
-        string foobar    = File.ReadAllText("./Assets/primes.json");
+        string foobar = File.ReadAllText("./Assets/primes.json");
 
-        Dictionary<string, long> allPrimes = JsonSerializer.Deserialize<Dictionary<string, long>>(foobar) ?? throw new InvalidOperationException();
+        Dictionary<string, long> allPrimes =
+            JsonSerializer.Deserialize<Dictionary<string, long>>(foobar) ?? throw new InvalidOperationException();
 
         return allPrimes;
     }

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Project_Euler.Problem0004;
 
 namespace ProjectEuler.Test;

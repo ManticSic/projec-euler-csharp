@@ -8,15 +8,15 @@ public class Problem0004
 {
     public Result0004 Solve(int digits)
     {
-        int min   = (int) Math.Pow(10, digits - 1);
-        int max   = (int) Math.Pow(10, digits);
+        int min   = (int)Math.Pow(10, digits - 1);
+        int max   = (int)Math.Pow(10, digits);
         int count = max - min;
 
         int[] numbers = Enumerable.Range(min, count).ToArray();
 
         Result0004? result = CartesianProduct.Create(numbers, numbers)
                                              .Distinct(CustomTupleIEqualityComparer.Instance)
-                                             .Select(tuple => new Result0004(new [] {tuple.Item1, tuple.Item2}))
+                                             .Select(tuple => new Result0004(new[] { tuple.Item1, tuple.Item2 }))
                                              .Where(possibleResult => IsPalindrome(possibleResult.Product))
                                              .MaxBy(possibleResult => possibleResult.Product);
 
@@ -44,7 +44,7 @@ public class Problem0004
 
     private class CustomTupleIEqualityComparer : IEqualityComparer<(int, int)>
     {
-        public static IEqualityComparer<(int, int)> Instance = new CustomTupleIEqualityComparer();
+        public static readonly IEqualityComparer<(int, int)> Instance = new CustomTupleIEqualityComparer();
 
         public bool Equals((int, int) x, (int, int) y)
         {
