@@ -63,10 +63,10 @@ public class Primes
 
     private IDictionary<string, long> LoadFromAssets()
     {
-        string foobar = File.ReadAllText("./Assets/primes.json");
+        string json = File.ReadAllText("./Assets/primes.json");
 
         Dictionary<string, long> allPrimes =
-            JsonSerializer.Deserialize<Dictionary<string, long>>(foobar) ?? throw new InvalidOperationException();
+            JsonSerializer.Deserialize<Dictionary<string, long>>(json) ?? throw new InvalidOperationException();
 
         return allPrimes;
     }
