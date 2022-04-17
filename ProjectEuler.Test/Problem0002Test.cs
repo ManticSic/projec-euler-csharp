@@ -1,5 +1,4 @@
-﻿using NLog;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Project_Euler.Problem0002;
 
 namespace ProjectEuler.Test;
@@ -12,20 +11,17 @@ namespace ProjectEuler.Test;
  * By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
  */
 
-public class Problem0002Test
+public class Problem0002Test : AbstractProblemTest<Problem0002>
 {
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
     [Test]
     [TestCase(100, 44)]
     [TestCase(4000000, 4613732)]
     public void Should(int border, int expected)
     {
         // prepare
-        Problem0002 sut = Scope.Resolve<Problem0002>();
 
         // run
-        int result = sut.Solve(border);
+        int result = Sut.Solve(border);
 
         // verify
         Assert.AreEqual(expected, result);
@@ -36,14 +32,8 @@ public class Problem0002Test
     public void Solve(int border)
     {
         // prepare
-        Problem0002 sut = Scope.Resolve<Problem0002>();
 
         // run
-        int result = sut.Solve(border);
-
-        Logger.Info("################");
-        Logger.Info("# Problem was solved");
-        Logger.Info($"# Result: {result}");
-        Logger.Info("################");
+        Solve(() => Sut.Solve(border));
     }
 }

@@ -1,5 +1,4 @@
-﻿using NLog;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Project_Euler.Problem0001;
 
 namespace ProjectEuler.Test;
@@ -10,20 +9,17 @@ namespace ProjectEuler.Test;
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
 
-public class Problem0001Test
+public class Problem0001Test : AbstractProblemTest<Problem0001>
 {
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
     [Test]
     [TestCase(new[] { 3, 5 }, 10, 23)]
     [TestCase(new[] { 3, 5 }, 1000, 233168)]
     public void Should(int[] multiples, int border, int expected)
     {
         // prepare
-        Problem0001 sut = Scope.Resolve<Problem0001>();
 
         // run
-        int result = sut.Solve(multiples, border);
+        int result = Sut.Solve(multiples, border);
 
         // verify
         Assert.AreEqual(expected, result);
@@ -34,14 +30,8 @@ public class Problem0001Test
     public void Solve(int[] multiples, int border)
     {
         // prepare
-        Problem0001 sut = Scope.Resolve<Problem0001>();
 
         // run
-        int result = sut.Solve(multiples, border);
-
-        Logger.Info("################");
-        Logger.Info("# Problem was solved");
-        Logger.Info($"# Result: {result}");
-        Logger.Info("################");
+        Solve(() => Sut.Solve(multiples, border));
     }
 }
