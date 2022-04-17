@@ -4,17 +4,28 @@ using UnityContainerAttributeRegistration;
 
 namespace ProjectEuler.Test;
 
-public static class Scope
+public class Scope
 {
-    private static readonly Lazy<IUnityContainer> lazyContainer = new(CreateUnityContainer);
+    private static readonly Lazy<Scope> instance = new(CreateInstance);
 
-    public static T Resolve<T>()
+    private readonly IUnityContainer container;
+
+    private Scope(IUnityContainer container)
     {
-        return lazyContainer.Value.Resolve<T>();
+        this.container = container;
     }
 
-    private static IUnityContainer CreateUnityContainer()
+    public static Scope Default => instance.Value;
+
+    public T Resolve<T>()
     {
-        return new UnityContainerPopulator().Populate();
+        return container.Resolve<T>();
+    }
+
+    private static Scope CreateInstance()
+    {
+        IUnityContainer container = new UnityContainerPopulator().Populate();
+
+        return new Scope(container);
     }
 }

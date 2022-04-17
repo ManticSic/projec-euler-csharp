@@ -10,7 +10,7 @@ public abstract class AbstractProblemTest<TSut>
 {
     private static readonly Logger _Logger = LogManager.GetLogger("Test", typeof(TSut));
 
-    protected readonly TSut Sut = Scope.Resolve<TSut>();
+    protected readonly TSut Sut = Scope.Default.Resolve<TSut>();
 
     protected void Solve<TResult>(Func<TResult> action)
     {
