@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Project_Euler.Util;
 
@@ -7,49 +8,30 @@ namespace ProjectEuler.Test.Util;
 public class CartesianProductTest : AbstractTest<CartesianProduct>
 {
     [Test]
-    public void TestCreate_SameArray()
+    public void TestCreate()
     {
         // prepare
+        IEnumerable<IEnumerable<int>> itemsToTest = new List<List<int>>
+                                                    {
+                                                        new() { 1, 2, 3 },
+                                                        new() { 1, 2, 3 },
+                                                    };
 
         // run
-        (int, int)[] result = Sut.Create(new[] { 1, 2, 3 }, new[] { 1, 2, 3 }).ToArray();
+        IEnumerable<IEnumerable<int>> result = Sut.Create(itemsToTest);
 
         // verify
-        (int, int)[] expected =
+        IEnumerable<IEnumerable<int>> expected = new List<IEnumerable<int>>()
         {
-            (1, 1),
-            (1, 2),
-            (1, 3),
-            (2, 1),
-            (2, 2),
-            (2, 3),
-            (3, 1),
-            (3, 2),
-            (3, 3),
-        };
-        Assert.AreEqual(expected, result);
-    }
-
-    [Test]
-    public void TestCreate_DifferentArrays()
-    {
-        // prepare
-
-        // run
-        (int, int)[] result = Sut.Create(new[] { 1, 2, 3 }, new[] { 4, 5, 6 }).ToArray();
-
-        // verify
-        (int, int)[] expected =
-        {
-            (1, 4),
-            (1, 5),
-            (1, 6),
-            (2, 4),
-            (2, 5),
-            (2, 6),
-            (3, 4),
-            (3, 5),
-            (3, 6),
+            new List<int> {1, 1},
+            new List<int> {1, 2},
+            new List<int> {1, 3},
+            new List<int> {2, 1},
+            new List<int> {2, 2},
+            new List<int> {2, 3},
+            new List<int> {3, 1},
+            new List<int> {3, 2},
+            new List<int> {3, 3},
         };
         Assert.AreEqual(expected, result);
     }

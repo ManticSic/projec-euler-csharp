@@ -19,11 +19,11 @@ public class Problem0004
         int max   = (int)Math.Pow(10, digits);
         int count = max - min;
 
-        int[] numbers = Enumerable.Range(min, count).ToArray();
+        List<int> numbers = Enumerable.Range(min, count).ToList();
 
-        Result0004? result = cartesianProduct.Create(numbers, numbers)
-                                             .Distinct(CustomTupleIEqualityComparer.Instance)
-                                             .Select(tuple => new Result0004(new[] { tuple.Item1, tuple.Item2 }))
+        Result0004? result = cartesianProduct.Create(new IEnumerable<int>[] { numbers, numbers })
+                                             .Distinct(CustomIEqualityComparer.Instance)
+                                             .Select(result => new Result0004(result))
                                              .Where(possibleResult => IsPalindrome(possibleResult.Product))
                                              .MaxBy(possibleResult => possibleResult.Product);
 
@@ -49,36 +49,38 @@ public class Problem0004
         return reverse;
     }
 
-    private class CustomTupleIEqualityComparer : IEqualityComparer<(int, int)>
+    private class CustomIEqualityComparer : IEqualityComparer<IEnumerable<int>>
     {
-        public static readonly IEqualityComparer<(int, int)> Instance = new CustomTupleIEqualityComparer();
+        public static readonly IEqualityComparer<IEnumerable<int>> Instance = new CustomIEqualityComparer();
 
-        public bool Equals((int, int) x, (int, int) y)
+
+
+        public bool Equals(IEnumerable<int>? x, IEnumerable<int>? y)
         {
-            if (x.Item1 == y.Item1 && x.Item2 == y.Item2)
+            if (Object.Equals(x, y))
             {
                 return true;
             }
-            else if (x.Item1 == y.Item2 && x.Item2 == y.Item1)
-            {
-                return true;
-            }
-            else
+
+            if ((x == null) ^ (y == null))
             {
                 return false;
             }
+
+            int[] x_ = x!.ToArray();
+            int[] y_ = y!.ToArray();
+
+            if (x_.Length != y_.Length)
+            {
+                return false;
+            }
+
+            return !x_.Where((item, index) => item != y_[index]).Any();
         }
 
-        public int GetHashCode((int, int) obj)
+        public int GetHashCode(IEnumerable<int> obj)
         {
-            if (obj.Item1 < obj.Item2)
-            {
-                return HashCode.Combine(obj.Item1, obj.Item2);
-            }
-            else
-            {
-                return HashCode.Combine(obj.Item2, obj.Item1);
-            }
+            return obj.GetHashCode();
         }
     }
 }

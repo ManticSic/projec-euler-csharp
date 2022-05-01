@@ -4,9 +4,9 @@ public record Result0004
 {
     private readonly Lazy<int> product;
 
-    public Result0004(int[] factors)
+    public Result0004(IEnumerable<int> factors)
     {
-        Factors = factors;
+        Factors = factors.ToArray();
         product = new Lazy<int>(CalculateProduct);
     }
 
