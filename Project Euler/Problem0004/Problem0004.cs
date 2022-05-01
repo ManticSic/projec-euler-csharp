@@ -6,6 +6,13 @@ namespace Project_Euler.Problem0004;
 [RegisterType]
 public class Problem0004
 {
+    private readonly CartesianProduct cartesianProduct;
+
+    public Problem0004(CartesianProduct cartesianProduct)
+    {
+        this.cartesianProduct = cartesianProduct;
+    }
+
     public Result0004 Solve(int digits)
     {
         int min   = (int)Math.Pow(10, digits - 1);
@@ -14,7 +21,7 @@ public class Problem0004
 
         int[] numbers = Enumerable.Range(min, count).ToArray();
 
-        Result0004? result = CartesianProduct.Create(numbers, numbers)
+        Result0004? result = cartesianProduct.Create(numbers, numbers)
                                              .Distinct(CustomTupleIEqualityComparer.Instance)
                                              .Select(tuple => new Result0004(new[] { tuple.Item1, tuple.Item2 }))
                                              .Where(possibleResult => IsPalindrome(possibleResult.Product))
