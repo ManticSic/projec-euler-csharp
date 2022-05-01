@@ -6,11 +6,9 @@ using NLog;
 
 namespace ProjectEuler.Test;
 
-public abstract class AbstractProblemTest<TSut>
+public abstract class AbstractProblemTest<TSut> : AbstractTest<TSut>
 {
     private static readonly Logger _Logger = LogManager.GetLogger("Test", typeof(TSut));
-
-    protected readonly TSut Sut = Scope.Default.Resolve<TSut>();
 
     protected void Solve<TResult>(Func<TResult> action)
     {
