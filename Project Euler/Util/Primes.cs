@@ -32,6 +32,11 @@ public class Primes
                .AsReadOnly();
     }
 
+    public long GetPrimeByIndex(int index)
+    {
+        return primesAsCollectionLazy.Value[index];
+    }
+
     private IEnumerable<long> FactorizationInternal(long value, int primeStartingIndex)
     {
         if (IsPrime(value))
