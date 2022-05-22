@@ -6,13 +6,11 @@ namespace Project_Euler.Problem0004;
 [RegisterType]
 public class Problem0004
 {
-    private readonly CartesianProduct                    cartesianProduct;
-    private readonly IEqualityComparer<IEnumerable<int>> intCollectionEqualityComparer;
+    private readonly CartesianProduct cartesianProduct;
 
-    public Problem0004(CartesianProduct cartesianProduct, IntCollectionEqualityComparer intCollectionEqualityComparer)
+    public Problem0004(CartesianProduct cartesianProduct)
     {
-        this.cartesianProduct              = cartesianProduct;
-        this.intCollectionEqualityComparer = intCollectionEqualityComparer;
+        this.cartesianProduct = cartesianProduct;
     }
 
     public Result0004 Solve(int digits)
@@ -24,7 +22,6 @@ public class Problem0004
         List<int> numbers = Enumerable.Range(min, count).ToList();
 
         Result0004? result = cartesianProduct.Create(new IEnumerable<int>[] { numbers, numbers })
-                                             .Distinct(intCollectionEqualityComparer)
                                              .Select(result => new Result0004(result))
                                              .Where(possibleResult => IsPalindrome(possibleResult.Product))
                                              .MaxBy(possibleResult => possibleResult.Product);
