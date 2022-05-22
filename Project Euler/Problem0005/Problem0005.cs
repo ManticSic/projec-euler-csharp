@@ -7,7 +7,7 @@ public class Problem0005
 {
     public int Solve(int upperBorder)
     {
-        List<int> dividers = Enumerable.Range(2, upperBorder)
+        List<int> dividers = Enumerable.Range(2, upperBorder - 1)
                                        .ToList();
 
         int numberToTest = upperBorder;
