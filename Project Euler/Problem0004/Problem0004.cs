@@ -6,11 +6,13 @@ namespace Project_Euler.Problem0004;
 [RegisterType]
 public class Problem0004
 {
-    private readonly CartesianProduct cartesianProduct;
+    private readonly CartesianProduct                    cartesianProduct;
+    private readonly IEqualityComparer<IEnumerable<int>> intCollectionEqualityComparer;
 
-    public Problem0004(CartesianProduct cartesianProduct)
+    public Problem0004(CartesianProduct cartesianProduct, IntCollectionEqualityComparer intCollectionEqualityComparer)
     {
-        this.cartesianProduct = cartesianProduct;
+        this.cartesianProduct              = cartesianProduct;
+        this.intCollectionEqualityComparer = intCollectionEqualityComparer;
     }
 
     public Result0004 Solve(int digits)
@@ -22,7 +24,7 @@ public class Problem0004
         List<int> numbers = Enumerable.Range(min, count).ToList();
 
         Result0004? result = cartesianProduct.Create(new IEnumerable<int>[] { numbers, numbers })
-                                             .Distinct(CustomIEqualityComparer.Instance)
+                                             .Distinct(intCollectionEqualityComparer)
                                              .Select(result => new Result0004(result))
                                              .Where(possibleResult => IsPalindrome(possibleResult.Product))
                                              .MaxBy(possibleResult => possibleResult.Product);
@@ -47,40 +49,5 @@ public class Problem0004
         }
 
         return reverse;
-    }
-
-    private class CustomIEqualityComparer : IEqualityComparer<IEnumerable<int>>
-    {
-        public static readonly IEqualityComparer<IEnumerable<int>> Instance = new CustomIEqualityComparer();
-
-
-
-        public bool Equals(IEnumerable<int>? x, IEnumerable<int>? y)
-        {
-            if (Object.Equals(x, y))
-            {
-                return true;
-            }
-
-            if ((x == null) ^ (y == null))
-            {
-                return false;
-            }
-
-            int[] x_ = x!.ToArray();
-            int[] y_ = y!.ToArray();
-
-            if (x_.Length != y_.Length)
-            {
-                return false;
-            }
-
-            return !x_.Where((item, index) => item != y_[index]).Any();
-        }
-
-        public int GetHashCode(IEnumerable<int> obj)
-        {
-            return obj.GetHashCode();
-        }
     }
 }
