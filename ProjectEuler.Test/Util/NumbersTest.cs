@@ -29,10 +29,7 @@ public class NumbersTest : AbstractTest<Numbers>
         // prepare
 
         // run & verify
-        Assert.Throws<DivideByZeroException>(() =>
-                                             {
-                                                 Sut.IsMultipleOf(0, 10);
-                                             });
+        Assert.Throws<DivideByZeroException>(() => Sut.IsMultipleOf(0, 10));
     }
 
     [Test]
