@@ -11,6 +11,7 @@ public class IntCollectionEqualityComparerTest : AbstractTest<IntCollectionEqual
     [TestCase(null, new [] {1, 2, 3}, false)]
     [TestCase(new [] {1, 2, 3}, null, false)]
     [TestCase(new [] {1, 2, 3}, new [] {1, 2, 3}, true)]
+    [TestCase(new [] {3, 2, 1}, new [] {1, 2, 3}, false)]
     [TestCase(new [] {1, 2, 3}, new [] {1, 2, 3, 4}, false)]
     [TestCase(new [] {1, 2, 3, 4}, new [] {1, 2, 3}, false)]
     public void TestEquals(IEnumerable<int>? item1, IEnumerable<int>? item2, bool expected)
@@ -38,15 +39,17 @@ public class IntCollectionEqualityComparerTest : AbstractTest<IntCollectionEqual
     }
 
     [Test]
-    public void TestGetHashCode()
+    [TestCase(new [] {1}, 1)]
+    [TestCase(new [] {1,2}, 3)]
+    [TestCase(new [] {1,2,10}, 13)]
+    public void TestGetHashCode(IEnumerable<int> item, int expected)
     {
         // prepare
-        IEnumerable<int> item = new[] { 1 };
 
         // run
         int hashCode = Sut.GetHashCode(item);
 
         // verify
-        Assert.AreEqual(item.GetHashCode(), hashCode);
+        Assert.AreEqual(expected, hashCode);
     }
 }

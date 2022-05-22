@@ -30,6 +30,6 @@ public sealed class IntCollectionEqualityComparer : IEqualityComparer<IEnumerabl
 
     public int GetHashCode(IEnumerable<int> obj)
     {
-        return obj.GetHashCode();
+        return obj.Sum(item => item.GetHashCode());
     }
 }
