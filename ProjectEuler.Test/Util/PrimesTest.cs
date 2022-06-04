@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Project_Euler.Util;
 
@@ -33,6 +34,19 @@ public class PrimesTest : AbstractTest<Primes>
 
         // run
         long[] result = Sut.Factorization(value).ToArray();
+
+        // verify
+        Assert.AreEqual(expected, result);
+    }
+
+    [Test]
+    [TestCase(10, new long[] {2, 3, 5, 7})]
+    public void TestGetRange(long upperBorder, long[] expected)
+    {
+        // prepare
+
+        // run
+        IReadOnlyList<long> result = Sut.GetRange(upperBorder);
 
         // verify
         Assert.AreEqual(expected, result);

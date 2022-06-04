@@ -37,6 +37,25 @@ public class Primes
         return primesAsCollectionLazy.Value[index];
     }
 
+    public IReadOnlyList<long> GetRange(long upperBorder)
+    {
+        List<long> result = new();
+
+        foreach (long prime in primesAsCollectionLazy.Value)
+        {
+            if (prime < upperBorder)
+            {
+                result.Add(prime);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return result.AsReadOnly();
+    }
+
     private IEnumerable<long> FactorizationInternal(long value, int primeStartingIndex)
     {
         if (IsPrime(value))
