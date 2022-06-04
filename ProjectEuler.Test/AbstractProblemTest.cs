@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using NLog;
@@ -25,6 +26,10 @@ public abstract class AbstractProblemTest<TSut> : AbstractTest<TSut>
         Type? resultType = result?.GetType();
 
         if (resultType is { IsArray: true })
+        {
+            PrintArrayResult(result as IEnumerable ?? throw new InvalidOperationException(), timeNeeded);
+        }
+        else if (result is IEnumerable)
         {
             PrintArrayResult(result as IEnumerable ?? throw new InvalidOperationException(), timeNeeded);
         }

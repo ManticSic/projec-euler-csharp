@@ -13,6 +13,11 @@ public class Numbers
 
     public bool IsEven(int value)
     {
+        return IsEven((long)value);
+    }
+
+    public bool IsEven(long value)
+    {
         return value % 2 == 0;
     }
 }
