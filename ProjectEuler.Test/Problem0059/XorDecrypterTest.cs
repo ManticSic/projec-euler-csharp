@@ -3,7 +3,7 @@ using System.Text;
 using NUnit.Framework;
 using Project_Euler.Problem0059;
 
-namespace ProjectEuler.Test;
+namespace ProjectEuler.Test.Problem0059;
 
 public class XorDecryterTest : AbstractProblemTest<XorDecrypter>
 {
